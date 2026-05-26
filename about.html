@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - SAAIA Store</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            color: #4c1d95;
+            background:#FDF7F9;
+        }
+        
+        h1, h2, h3 {
+            font-family: 'Playfair Display', serif;
+        }
+        
+        /* Navbar */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 18px 5%;
+            background:#FDF7F9;
+            border-bottom: 1px solid #b8860b;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .logo img {
+            height: 50px;
+            border-radius: 8px;
+        }
+        
+        .logo h2 {
+            color:#4c1d95;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 35px;
+        }
+        
+        .nav-links a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            font-size: 15px;
+            padding-bottom: 3px;
+            border-bottom: 2px solid transparent;
+            transition: all 0.3s ease;
+        }
+        
+        .nav-links a:hover, .nav-links a.active {
+            color: #b8860b!important;
+            border-bottom: 2px solid #b8860b!important;
+        }
+        
+        .cart {
+            position: relative;
+        }
+        
+        .cart-link {
+            color: #b8860b;
+            font-size: 20px;
+            transition: 0.3s;
+        }
+        
+        .cart-link:hover {
+            color: #4c1d95;
+        }
+        
+        .cart-count {
+            background:#4c1d95;
+            color: white;
+            border: 2px solid #FDF7F9;
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            font-weight: bold;
+            font-size: 11px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: absolute;
+            top: -8px;
+            right: -10px;
+        }
+        
+        /* About Us Section */
+        .about-section {
+            padding: 70px 5%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .about-header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .about-header h3 {
+            color: #b8860b;
+            font-size: 13px;
+            letter-spacing: 2px;
+            font-weight: 600;
+        }
+
+        .about-header h2 {
+            color:#4c1d95;
+            font-size: 36px;
+            margin-top: 5px;
+        }
+
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: center;
+            margin-bottom: 60px;
+        }
+
+        .about-image img {
+            width: 100%;
+            border-radius: 12px;
+            box-shadow: 0 8px 25px rgba(76, 29, 149, 0.15);
+        }
+
+        .about-text h3 {
+            color: #4c1d95;
+            font-size: 28px;
+            margin-bottom: 20px;
+        }
+
+        .about-text p {
+            color: #555;
+            line-height: 1.8;
+            margin-bottom: 15px;
+            font-size: 15px;
+        }
+
+        .about-text .highlight {
+            color: #b8860b;
+            font-weight: 600;
+        }
+
+        /* Values Section */
+        .values {
+            background: white;
+            padding: 60px 5%;
+            border-radius: 12px;
+            margin-bottom: 60px;
+            border: 1px solid #e0d4f7;
+            box-shadow: 0 4px 20px rgba(76, 29, 149, 0.08);
+        }
+
+        .values-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            text-align: center;
+        }
+
+        .value-card {
+            padding: 20px;
+            transition: 0.3s;
+        }
+
+        .value-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .value-card i {
+            font-size: 40px;
+            color: #b8860b;
+            margin-bottom: 15px;
+        }
+
+        .value-card h4 {
+            color: #4c1d95;
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+
+        .value-card p {
+            color: #666;
+            font-size: 14px;
+            line-height: 1.6;
+        }
+
+        /* Footer */
+        .footer {
+            background: white;
+            margin: 0 5% 30px 5%;
+            padding: 25px 30px 15px;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(76, 29, 149, 0.08);
+            border: 1px solid #e0d4f7;
+        }
+        
+        .footer-main {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 25px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #e0d4f7;
+        }
+        
+        .footer-logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        
+        .footer-logo img {
+            height: 60px;
+            border-radius: 8px;
+        }
+        
+        .footer-logo p {
+            font-style: italic;
+            color:#4c1d95;
+            font-size: 12px;
+            line-height: 1.4;
+        }
+        
+        .footer-section h4 {
+            color: #4c1d95;
+            margin-bottom: 10px;
+            font-size: 13px;
+            letter-spacing: 1px;
+        }
+        
+        .footer-section ul {
+            list-style: none;
+            display: flex;
+            gap: 20px;
+        }
+        
+        .footer-section li {
+            color: #555;
+            font-size: 13px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        
+        .footer-section li:hover {
+            color: #b8860b;
+        }
+        
+        .social-icons {
+            display: flex;
+            gap: 10px;
+        }
+        
+        .social-icons i {
+            width: 32px;
+            height: 32px;
+            border: 1px solid #b8860b;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color:#4c1d95;
+            cursor: pointer;
+            font-size: 14px;
+            transition: 0.3s;
+        }
+        
+        .social-icons i:hover {
+            background: #b8860b;
+            color: white;
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 15px;
+            color: #777;
+            font-size: 12px;
+        }
+        
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .values-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+        
+        @media (max-width: 768px) {
+            .nav-links { display: none; }
+            .about-content { grid-template-columns: 1fr; }
+            .values-grid { grid-template-columns: 1fr; }
+            .footer-main { flex-direction: column; text-align: center; }
+            .footer-section ul { flex-direction: column; gap: 8px; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="logo">
+            <img src="WhatsApp Image 2026-04-28 at 9.18.27 PM.jpeg" alt="SAAIA Store logo"/>
+            <h2>SAAIA Store</h2>
+        </div>
+        
+        <div class="nav-links">
+            
+            <a href="collection.html#Clothes">Collections</a>
+            <a href="about.html" class="active">About Us</a>
+            <a href="contact.html">Contact Us</a>
+        </div>
+
+        <div class="cart">
+            <a href="cart.html" class="cart-link">  
+                <i class="fa-solid fa-cart-shopping"></i>
+                <span class="cart-count" id="cartcount">0</span>
+            </a>
+        </div>
+    </nav>
+
+    <!-- About Section -->
+    <section class="about-section">
+        <div class="about-header">
+            <h3>OUR STORY</h3>
+            <h2>About SAAIA Store</h2>
+        </div>
+
+        <div class="about-content">
+            <div class="about-image">
+                <img src="photo-1445205170230-053b83016050.jfif" alt="SAAIA Store Boutique">
+            </div>
+            <div class="about-text">
+                <h3>Five Together, Stronger Forever ♡</h3>
+                <p>
+                    Welcome to <span class="highlight">SAAIA Store</span> - where tradition meets elegance. Hum 5 doston ne mil kar is brand ko shuru kiya tha ek simple vision ke sath: Pakistan ki khoobsurat fashion ko har ghar tak pohnchana.
+                </p>
+                <p>
+                    2024 mein shuru hone wala ye safar aaj hazaron customers ka trust jeet chuka hai. Hum formal wear, casual suits, lawn, party wear aur kids collection mein best quality aur unique designs provide karte hain.
+                </p>
+                <p>
+                    Hamara maqsad sirf kapray bechna nahi, balke har aurat ko <span class="highlight">confident aur beautiful</span> feel karwana hai.
+                </p>
+            </div>
+        </div>
+
+        <!-- Our Values -->
+        <div class="values">
+            <div class="about-header">
+                <h3>WHAT WE STAND FOR</h3>
+                <h2>Our Values</h2>
+            </div>
+            <div class="values-grid">
+                <div class="value-card">
+                    <i class="fa-solid fa-gem"></i>
+                    <h4>Premium Quality</h4>
+                    <p>Har suit handpicked fabric aur finest stitching ke sath banaya jata hai. Quality par no compromise.</p>
+                </div>
+                <div class="value-card">
+                    <i class="fa-solid fa-heart"></i>
+                    <h4>Customer First</h4>
+                    <p>Aap ki khushi hamari priority hai. 24/7 support aur easy returns ke sath hum hamesha aap ke sath hain.</p>
+                </div>
+                <div class="value-card">
+                    <i class="fa-solid fa-truck-fast"></i>
+                    <h4>Fast Delivery</h4>
+                    <p>Poore Pakistan mein 3-5 din mein delivery. Lahore mein to same day delivery bhi available hai.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-main">
+            <div class="footer-logo">
+                <img src="WhatsApp Image 2026-04-28 at 9.18.30 PM.JPEG" alt="SAAIA Store Logo">
+                <p>Five together,<br>Stronger forever. ♡</p>
+            </div>
+            
+            <div class="footer-section">
+                <h4>CUSTOMER CARE</h4>
+                <ul>
+                    <li>My Account</li>
+                    <li>Track Order</li>
+                    <li>FAQs</li>
+                </ul>
+            </div>
+            
+            <div class="footer-section">
+                <h4>FOLLOW US</h4>
+                <div class="social-icons">
+                    <i class="fa-brands fa-square-instagram"></i>
+                    <i class="fa-brands fa-square-facebook"></i>
+                    <i class="fa-brands fa-tiktok"></i>
+                </div>
+            </div>
+        </div>
+        <div class="copyright">
+            © 2024 SAAIA Store. All Rights Reserved.
+        </div>
+    </footer>
+
+<script>
+    // Cart count update
+    window.onload = function() {
+        let cart = JSON.parse(localStorage.getItem('cart')) || [];
+        let totalQty = cart.reduce((sum, item) => sum + item.qty, 0);
+        document.getElementById('cartcount').innerText = totalQty;
+    }
+</script>
+</body>
+</html>

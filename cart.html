@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shopping Cart - SAAIA Store</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body { 
+            font-family: 'Poppins', sans-serif; 
+            background: #FDF7F9; 
+            color: #4c1d95;
+        }
+        
+        .container { 
+            max-width: 1100px; 
+            margin: 40px auto; 
+            padding: 0 20px; 
+        }
+        
+        h1 { 
+            color: #4c1d95; 
+            margin-bottom: 30px; 
+            text-align: center;
+            font-size: 32px;
+        }
+        
+        .cart-wrapper {
+            display: flex;
+            gap: 30px;
+            align-items: flex-start;
+        }
+        
+        .cart-items { 
+            flex: 2; 
+            background: white; 
+            padding: 25px; 
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(76, 29, 149, 0.08);
+            border: 1px solid #e0d4f7;
+        }
+        
+        .cart-item {
+            display: flex;
+            gap: 20px;
+            padding: 20px 0;
+            border-bottom: 1px solid #e0d4f7;
+        }
+        
+        .cart-item:last-child { border-bottom: none; }
+        
+        .cart-item img {
+            width: 100px;
+            height: 120px;
+            object-fit: cover;
+            border-radius: 8px;
+        }
+        
+        .item-details { flex: 1; }
+        
+        .item-details h3 { 
+            font-size: 18px; 
+            margin-bottom: 8px; 
+            color: #4c1d95;
+        }
+        
+        .item-price { 
+            color: #b8860b; 
+            font-weight: bold; 
+            font-size: 16px;
+        }
+        
+        .quantity-control {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin: 15px 0;
+        }
+        
+        .qty-btn {
+            width: 32px;
+            height: 32px;
+            border: 1px solid #e0d4f7;
+            background: #FDF7F9;
+            cursor: pointer;
+            font-size: 16px;
+            border-radius: 6px;
+            color: #4c1d95;
+            transition: 0.3s;
+        }
+        
+        .qty-btn:hover { 
+            background: #4c1d95; 
+            color: white; 
+        }
+        
+        .qty-display { 
+            width: 40px; 
+            text-align: center; 
+            font-weight: 600;
+            color: #4c1d95;
+        }
+        
+        .remove-btn {
+            background: none;
+            border: none;
+            color: #dc3545;
+            cursor: pointer;
+            font-size: 14px;
+            margin-top: 5px;
+            transition: 0.3s;
+        }
+        
+        .remove-btn:hover { 
+            text-decoration: underline; 
+            color: #c82333;
+        }
+        
+        .cart-summary {
+            flex: 1;
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(76, 29, 149, 0.08);
+            border: 1px solid #e0d4f7;
+            height: fit-content;
+            position: sticky;
+            top: 20px;
+        }
+        
+        .cart-summary h2 {
+            color: #b8860b;
+            margin-bottom: 20px;
+            font-size: 22px;
+            border-bottom: 2px solid #e0d4f7;
+            padding-bottom: 10px;
+        }
+        
+        .summary-row {
+            display: flex;
+            justify-content: space-between;
+            margin: 15px 0;
+            font-size: 16px;
+        }
+        
+        .summary-total {
+            border-top: 2px solid #e0d4f7;
+            padding-top: 15px;
+            font-weight: bold;
+            font-size: 20px;
+            color: #4c1d95;
+        }
+        
+        .checkout-btn {
+            display: block;
+            width: 100%;
+            background: #4c1d95;
+            color: white;
+            text-align: center;
+            padding: 15px;
+            text-decoration: none;
+            font-weight: 600;
+            border-radius: 8px;
+            margin-top: 20px;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+            transition: 0.3s;
+        }
+        
+        .checkout-btn:hover { 
+            background: #b8860b; 
+            transform: translateY(-2px);
+        }
+        
+        .checkout-btn:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+            transform: none;
+        }
+        
+        .empty-cart {
+            text-align: center;
+            padding: 60px 20px;
+            color: #777;
+        }
+        
+        .empty-cart i { 
+            font-size: 60px; 
+            margin-bottom: 20px; 
+            color: #e0d4f7;
+        }
+        
+        .empty-cart h3 {
+            color: #4c1d95;
+            margin-bottom: 10px;
+        }
+        
+        .continue-shopping {
+            display: inline-block;
+            margin-top: 20px;
+            color: #b8860b;
+            text-decoration: none;
+            font-weight: 600;
+            transition: 0.3s;
+        }
+        
+        .continue-shopping:hover {
+            color: #4c1d95;
+        }
+        
+        @media(max-width: 768px) {
+            .cart-wrapper { flex-direction: column; }
+            .cart-item { flex-direction: column; text-align: center; }
+            .cart-item img { margin: auto; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Your Shopping Cart</h1>
+        
+        <div class="cart-wrapper">
+            <!-- Left: Cart Items -->
+            <div class="cart-items" id="cartItemsContainer">
+                <!-- JS se items yahan aayenge -->
+            </div>
+
+            <!-- Right: Summary -->
+            <div class="cart-summary">
+                <h2>Order Summary</h2>
+                <div class="summary-row">
+                    <span>Subtotal:</span>
+                    <span id="subtotal">PKR 0</span>
+                </div>
+                <div class="summary-row">
+                    <span>Shipping:</span>
+                    <span>PKR 200</span>
+                </div>
+                <div class="summary-row summary-total">
+                    <span>Total:</span>
+                    <span id="total">PKR 200</span>
+                </div>
+                <button onclick="window.location.href='checkout.html'" class="checkout-btn" id="checkoutBtn">
+                    Proceed to checkout
+                </button>
+            </div>
+        </div>
+    </div>
+
+<script>
+    const SHIPPING = 200;
+
+    // Page load pe cart dikhao
+    document.addEventListener('DOMContentLoaded', loadCart);
+
+    function loadCart() {
+        let cart = JSON.parse(localStorage.getItem('cart')) || [];
+        let container = document.getElementById('cartItemsContainer');
+        
+        if(cart.length === 0) {
+            container.innerHTML = `
+                <div class="empty-cart">
+                    <i class="fa-solid fa-cart-shopping"></i>
+                    <h3>Your cart is empty</h3>
+                    <p>Add some products to get started</p>
+                    <a href="collection.html" class="continue-shopping">Continue Shopping</a>
+                </div>
+            `;
+            document.getElementById('checkoutBtn').disabled = true;
+            updateSummary(0);
+            return;
+        }
+
+        container.innerHTML = '';
+        let subtotal = 0;
+
+        cart.forEach((item, index) => {
+            let itemTotal = item.price * item.qty;
+            subtotal += itemTotal;
+            
+            container.innerHTML += `
+                <div class="cart-item">
+                    <img src="${item.image}" alt="${item.name}">
+                    <div class="item-details">
+                        <h3>${item.name}</h3>
+                        <p class="item-price">PKR ${item.price.toLocaleString()}</p>
+                        <div class="quantity-control">
+                            <button class="qty-btn" onclick="updateQty(${index}, -1)">-</button>
+                            <span class="qty-display">${item.qty}</span>
+                            <button class="qty-btn" onclick="updateQty(${index}, 1)">+</button>
+                        </div>
+                        <p><strong>Item Total: PKR ${itemTotal.toLocaleString()}</strong></p>
+                        <button class="remove-btn" onclick="removeItem(${index})">
+                            <i class="fa-solid fa-trash"></i> Remove
+                        </button>
+                    </div>
+                </div>
+            `;
+        });
+
+        updateSummary(subtotal);
+        document.getElementById('checkoutBtn').disabled = false;
+    }
+
+    function updateQty(index, change) {
+        let cart = JSON.parse(localStorage.getItem('cart')) || [];
+        cart[index].qty += change;
+        
+        if(cart[index].qty <= 0) {
+            cart.splice(index, 1);
+        }
+        
+        localStorage.setItem('cart', JSON.stringify(cart));
+        loadCart();
+        updateNavCartCount();
+    }
+
+    function removeItem(index) {
+        let cart = JSON.parse(localStorage.getItem('cart')) || [];
+        cart.splice(index, 1);
+        localStorage.setItem('cart', JSON.stringify(cart));
+        loadCart();
+        updateNavCartCount();
+    }
+
+    function updateSummary(subtotal) {
+        document.getElementById('subtotal').innerText = `PKR ${subtotal.toLocaleString()}`;
+        let total = subtotal > 0 ? subtotal + SHIPPING : 0;
+        document.getElementById('total').innerText = `PKR ${total.toLocaleString()}`;
+    }
+
+    function updateNavCartCount() {
+        let cart = JSON.parse(localStorage.getItem('cart')) || [];
+        let totalQty = cart.reduce((sum, item) => sum + item.qty, 0);
+        let countEl = document.getElementById('cartCount');
+        if(countEl) countEl.innerText = totalQty;
+    }
+</script>
+
+</body>
+</html>

@@ -1,0 +1,555 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us - SAAIA Store</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            color: #4c1d95;
+            background:#FDF7F9;
+        }
+        
+        h1, h2, h3 {
+            font-family: 'Playfair Display', serif;
+        }
+        
+        /* Navbar */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 18px 5%;
+            background:#FDF7F9;
+            border-bottom: 1px solid #b8860b;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .logo img {
+            height: 50px;
+            border-radius: 8px;
+        }
+        
+        .logo h2 {
+            color:#4c1d95;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 35px;
+        }
+        
+        .nav-links a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            font-size: 15px;
+            padding-bottom: 3px;
+            border-bottom: 2px solid transparent;
+            transition: all 0.3s ease;
+        }
+        
+        .nav-links a:hover, .nav-links a.active {
+            color: #b8860b!important;
+            border-bottom: 2px solid #b8860b!important;
+        }
+        
+        .cart {
+            position: relative;
+        }
+        
+        .cart-link {
+            color: #b8860b;
+            font-size: 20px;
+            transition: 0.3s;
+        }
+        
+        .cart-link:hover {
+            color: #4c1d95;
+        }
+        
+        .cart-count {
+            background:#4c1d95;
+            color: white;
+            border: 2px solid #FDF7F9;
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            font-weight: bold;
+            font-size: 11px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: absolute;
+            top: -8px;
+            right: -10px;
+        }
+
+        /* Contact Section */
+        .contact-section {
+            padding: 70px 5%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .contact-header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .contact-header h3 {
+            color: #b8860b;
+            font-size: 13px;
+            letter-spacing: 2px;
+            font-weight: 600;
+        }
+
+        .contact-header h2 {
+            color:#4c1d95;
+            font-size: 36px;
+            margin-top: 5px;
+        }
+
+        .contact-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            background: white;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(76, 29, 149, 0.08);
+            border: 1px solid #e0d4f7;
+        }
+
+        /* Contact Info */
+        .contact-info h3 {
+            color: #4c1d95;
+            font-size: 24px;
+            margin-bottom: 25px;
+        }
+
+        .info-box {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 25px;
+            align-items: flex-start;
+        }
+
+        .info-box i {
+            width: 45px;
+            height: 45px;
+            background: #FDF7F9;
+            border: 1px solid #b8860b;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #4c1d95;
+            font-size: 18px;
+            flex-shrink: 0;
+            transition: 0.3s;
+        }
+
+        .info-box:hover i {
+            background: #4c1d95;
+            color: white;
+        }
+
+        .info-text h4 {
+            color: #4c1d95;
+            font-size: 16px;
+            margin-bottom: 5px;
+        }
+
+        .info-text p {
+            color: #666;
+            font-size: 14px;
+            line-height: 1.6;
+        }
+
+        .social-contact {
+            margin-top: 30px;
+        }
+
+        .social-contact h4 {
+            color: #4c1d95;
+            margin-bottom: 15px;
+        }
+
+        .social-icons-contact {
+            display: flex;
+            gap: 12px;
+        }
+
+        .social-icons-contact a {
+            width: 40px;
+            height: 40px;
+            border: 1px solid #b8860b;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color:#4c1d95;
+            font-size: 16px;
+            transition: 0.3s;
+        }
+
+        .social-icons-contact a:hover {
+            background: #4c1d95;
+            color: white;
+        }
+
+        /* Contact Form */
+        .contact-form h3 {
+            color: #4c1d95;
+            font-size: 24px;
+            margin-bottom: 25px;
+        }
+
+        .form-group {
+            margin-bottom: 18px;
+        }
+
+        .form-group label {
+            display: block;
+            color: #4c1d95;
+            font-size: 14px;
+            margin-bottom: 6px;
+            font-weight: 500;
+        }
+
+        .form-group input, .form-group textarea {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #e0d4f7;
+            border-radius: 8px;
+            font-family: 'Poppins', sans-serif;
+            font-size: 14px;
+            color: #4c1d95;
+            background: #FDF7F9;
+            transition: 0.3s;
+        }
+
+        .form-group input:focus, .form-group textarea:focus {
+            outline: none;
+            border-color: #b8860b;
+            box-shadow: 0 0 0 3px rgba(184, 134, 11, 0.1);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 14px;
+            background: #4c1d95;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 15px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .submit-btn:hover {
+            background: #b8860b;
+            transform: translateY(-2px);
+        }
+
+        /* Toast */
+        .toast {
+            position: fixed;
+            top: 100px;
+            right: 20px;
+            background: #4c1d95;
+            color: white;
+            padding: 15px 25px;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            z-index: 1000;
+            display: none;
+            animation: slideIn 0.3s ease;
+        }
+        
+        @keyframes slideIn {
+            from { transform: translateX(400px); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+
+        /* Footer */
+        .footer {
+            background: white;
+            margin: 60px 5% 30px 5%;
+            padding: 25px 30px 15px;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(76, 29, 149, 0.08);
+            border: 1px solid #e0d4f7;
+        }
+        
+        .footer-main {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 25px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #e0d4f7;
+        }
+        
+        .footer-logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        
+        .footer-logo img {
+            height: 60px;
+            border-radius: 8px;
+        }
+        
+        .footer-logo p {
+            font-style: italic;
+            color:#4c1d95;
+            font-size: 12px;
+            line-height: 1.4;
+        }
+        
+        .footer-section h4 {
+            color: #4c1d95;
+            margin-bottom: 10px;
+            font-size: 13px;
+            letter-spacing: 1px;
+        }
+        
+        .footer-section ul {
+            list-style: none;
+            display: flex;
+            gap: 20px;
+        }
+        
+        .footer-section li {
+            color: #555;
+            font-size: 13px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        
+        .footer-section li:hover {
+            color: #b8860b;
+        }
+        
+        .social-icons {
+            display: flex;
+            gap: 10px;
+        }
+        
+        .social-icons i {
+            width: 32px;
+            height: 32px;
+            border: 1px solid #b8860b;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color:#4c1d95;
+            cursor: pointer;
+            font-size: 14px;
+            transition: 0.3s;
+        }
+        
+        .social-icons i:hover {
+            background: #b8860b;
+            color: white;
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 15px;
+            color: #777;
+            font-size: 12px;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-links { display: none; }
+            .contact-container { grid-template-columns: 1fr; }
+            .footer-main { flex-direction: column; text-align: center; }
+            .footer-section ul { flex-direction: column; gap: 8px; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Toast -->
+    <div class="toast" id="toast"></div>
+
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="logo">
+            <img src="WhatsApp Image 2026-04-28 at 9.18.27 PM.jpeg" alt="SAAIA Store logo"/>
+            <h2>SAAIA Store</h2>
+        </div>
+        
+        <div class="nav-links">
+            
+            <a href="collection.html">Collections</a>
+            <a href="about.html">About Us</a>
+            <a href="contact.html" class="active">Contact Us</a>
+        </div>
+
+        <div class="cart">
+            <a href="cart.html" class="cart-link">  
+                <i class="fa-solid fa-cart-shopping"></i>
+                <span class="cart-count" id="cartcount">0</span>
+            </a>
+        </div>
+    </nav>
+
+    <!-- Contact Section -->
+    <section class="contact-section">
+        <div class="contact-header">
+            <h3>GET IN TOUCH</h3>
+            <h2>Contact Us</h2>
+        </div>
+
+        <div class="contact-container">
+            <!-- Left: Contact Info -->
+            <div class="contact-info">
+                <h3>Let's Talk ♡</h3>
+                
+                <div class="info-box">
+                    <i class="fa-solid fa-location-dot"></i>
+                    <div class="info-text">
+                        <h4>Our Location</h4>
+                        <p>Shop #12, Liberty Market, Gulberg III, Lahore, Pakistan</p>
+                    </div>
+                </div>
+
+                <div class="info-box">
+                    <i class="fa-solid fa-phone"></i>
+                    <div class="info-text">
+                        <h4>Call Us</h4>
+                        <p>+92 300-5488926<br>Mon - Sat, 10AM - 8PM</p>
+                    </div>
+                </div>
+
+                <div class="info-box">
+                    <i class="fa-solid fa-envelope"></i>
+                    <div class="info-text">
+                        <h4>Email Us</h4>
+                        <p>support@saaiastore.pk<br>We reply within 24 hours</p>
+                    </div>
+                </div>
+
+                <div class="social-contact">
+                    <h4>Follow Us</h4>
+                    <div class="social-icons-contact">
+                        <a href="#"><i class="fa-brands fa-instagram"></i></a>
+                        <a href="#"><i class="fa-brands fa-facebook"></i></a>
+                        <a href="#"><i class="fa-brands fa-tiktok"></i></a>
+                        <a href="#"><i class="fa-brands fa-whatsapp"></i></a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right: Contact Form -->
+            <div class="contact-form">
+                <h3>Send a Message</h3>
+                <form onsubmit="sendMessage(event)">
+                    <div class="form-group">
+                        <label>Your Name</label>
+                        <input type="text" id="name" placeholder="Your name" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Email Address</label>
+                        <input type="email" id="email" placeholder="Your email" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Subject</label>
+                        <input type="text" id="subject" placeholder="Order Inquiry" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Message</label>
+                        <textarea id="message" placeholder="Type your message here..." required></textarea>
+                    </div>
+                    <button type="submit" class="submit-btn">Send Message</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-main">
+            <div class="footer-logo">
+                <img src="WhatsApp Image 2026-04-28 at 9.18.30 PM.JPEG" alt="SAAIA Store Logo">
+                <p>Five together,<br>Stronger forever. ♡</p>
+            </div>
+            
+            <div class="footer-section">
+                <h4>CUSTOMER CARE</h4>
+                <ul>
+                    <li>My Account</li>
+                    <li>Track Order</li>
+                    <li>FAQs</li>
+                </ul>
+            </div>
+            
+            <div class="footer-section">
+                <h4>FOLLOW US</h4>
+                <div class="social-icons">
+                    <i class="fa-brands fa-instagram"></i>
+                    <i class="fa-brands fa-facebook"></i>
+                    <i class="fa-brands fa-tiktok"></i>
+                </div>
+            </div>
+        </div>
+        <div class="copyright">
+            © 2024 SAAIA Store. All Rights Reserved.
+        </div>
+    </footer>
+
+    <script>
+        // Cart count
+        window.onload = function() {
+            let cart = JSON.parse(localStorage.getItem('cart')) || [];
+            let totalQty = cart.reduce((sum, item) => sum + item.qty, 0);
+            document.getElementById('cartcount').innerText = totalQty;
+        }
+
+        function showToast(message) {
+            let toast = document.getElementById('toast');
+            toast.innerText = message;
+            toast.style.display = 'block';
+            setTimeout(() => {
+                toast.style.display = 'none';
+            }, 2500);
+        }
+
+        function sendMessage(e) {
+            e.preventDefault();
+            let name = document.getElementById('name').value;
+            showToast('Thank you ' + name + '! Your message has been sent. We will contact you soon.');
+            e.target.reset();
+        }
+    </script>
+</body>
+</html>

@@ -2,5 +2,5 @@
 Ye mera pehla GitHub project hai.
 Main yahan coding seekh rahi hu.
 ## My First Project to Learn GitHub
-GitHub use karna seekh raha hu
+GitHub use karna seekh rahi hu
 Chote chote code yahan save karungi
